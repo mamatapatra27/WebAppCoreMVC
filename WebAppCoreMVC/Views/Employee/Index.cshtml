@@ -1,0 +1,88 @@
+﻿@* for Marge Model *@
+@* @model WebAppCoreMVC.Models.ViewModel.EmployeeDepartmentListViewModel *@
+
+@* for Join Model *@
+@model IEnumerable<WebAppCoreMVC.Models.ViewModel.EmployeeDepartmentSummaryViewModel>
+
+@{
+	ViewData["Title"] = "Employee";
+}
+
+<div class="container">
+	<div class="row">
+		
+		<div class="col-12">
+			@* <div>
+				<h1 class="text-info text-center p-1 border border-dark">Employees List</h1>
+			</div> *@
+			<div class="row">
+				<div class="col-6">
+					<div>
+						<a class="btn btn-sm btn-primary m-2 p-2" asp-action="AddEmployee" asp-controller="Employee">Add Employee</a>
+					</div>
+				</div>
+				<div class="col-6">
+					<input type="text" placeholder="Search here..." id="txtSearch" class="form-control m-1 float-end" style="width:50%;"/>
+				</div>
+			</div>
+			<table class="table table-bordered text-center">
+				<thead class="bg-dark text-light">
+					<tr>
+						<th>
+							<input type="checkbox" class="form-check-input" id="Select_All" name="Select_All"/>
+						</th>
+						<th>Employee Id</th>
+						<th>Name</th>
+						@* <th>First Name</th>
+						<th>Middle Name</th>
+						<th>Last Name</th> *@
+						<th>Gender</th>
+						<th>Department Name</th>
+						<th>Department Code</th>
+						<th>Action</th>
+					</tr>
+				</thead>
+				<tbody>
+					@* @foreach(var d in Model.Employees) *@
+					@foreach(var d in Model)
+					{
+						<tr>
+							<td>
+								<input type="checkbox" class="form-check-input" id="Select_One" name ="Select_One" value="@d.EmployeeId"/>
+							</td>
+							<td>@d.EmployeeId</td>
+							@* <td>@d.FirstName</td>
+							<td>@d.MiddleName</td>
+							<td>@d.LastName</td> *@
+							<td>@d.FullName</td>
+							<td>@d.Gender</td>
+							<td>@d.DepartmentName</td>
+							<td>@d.DepartmentCode</td>
+							<td>
+								<a class="btn btn-sm btn-primary" asp-action="AddEmployee" asp-controller="Employee" asp-route-id="@d.EmployeeId">Edit</a>
+								<a class="btn btn-sm btn-danger" asp-action="DeleteEmployee" onclick="return confirm('Are you sure! You want to delete this Record?')" asp-controller="Employee" asp-route-id="@d.EmployeeId">Delete</a>
+								<a class="btn btn-sm btn-warning" asp-action="DetailsEmployee" asp-controller="Employee" asp-route-id="@d.EmployeeId">Details</a>
+							</td>
+						</tr>
+					}
+				</tbody>
+			</table>
+
+			<div class="row">
+				<div class="col-6">
+					@* Back To Dashboard *@
+					<a class="btn btn-sm btn-warning p-2 m-1" asp-action="Index" asp-controller="Dashboard">Back To Dashboard</a>
+				</div>
+				<div class="col-6">
+					<button style="cursor:pointer" class="btn btn-sm btn-outline-danger m-2 p-2 float-end" onclick="return confirm('Are you sure! You want to delete that Records?')" id="btnDelete">Delete</button>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+		@* Script for Search *@
+@section scripts{
+	<script src="/js/CustomJs.js"></script>
+}
+

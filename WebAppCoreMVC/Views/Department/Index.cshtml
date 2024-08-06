@@ -1,0 +1,47 @@
+﻿@using WebAppCoreMVC.Utility
+@model IEnumerable<WebAppCoreMVC.Models.Department>
+@{
+    ViewData["Title"] = "Department";
+    Layout = "~/Views/Shared/_LayoutDashboard.cshtml";
+}
+
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            
+            <div style="float:right" class="text-light">
+                <a class="btn btn-sm btn-warning m-1 p-1 text-light" asp-action="AddDepartment" asp-controller="Department">Add Department</a>
+            </div>
+            <table class="table table-bordered table-hover text-center">
+                <thead class="bg-dark text-light">
+                    <tr>
+                        <th>Department Id</th>
+                        <th>Department Name</th>
+                        <th>Department Code</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    @foreach(var d in Model)
+                    {
+                        <tr>
+                            <td>@d.DepartmentId</td>
+                            <td>@Utilities.EveryFirstCharacterCapital(d.DepartmentName)</td>
+                            <td>@d.DepartmentCode.ToUpper()</td>
+                            <td>
+                                <a class="btn btn-sm btn-primary" asp-action="AddDepartment" asp-controller="Department" asp-route-id="@d.DepartmentId">Edit</a>
+                                
+                                <a class="btn btn-sm btn-danger" asp-action="Delete" onclick="return confirm('Are you sure! you want to Delete this?')" asp-controller="Department" asp-route-id="@d.DepartmentId">Delete</a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+
+            @* Back To Dashboard *@
+            <a class="btn btn-sm btn-warning float-end p-2 m-1" asp-action="Index" asp-controller="Dashboard">Back To Dashboard</a>
+        </div>
+    </div>
+</div>
+

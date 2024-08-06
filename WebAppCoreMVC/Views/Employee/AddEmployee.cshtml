@@ -1,0 +1,94 @@
+﻿@using WebAppCoreMVC.Utility
+@model WebAppCoreMVC.Models.ViewModel.EmployeeDepartmentSummaryViewModel
+
+@{
+    ViewData["Title"] = "AddEmployee";
+    Layout = "~/Views/Shared/_LayoutDashboard.cshtml";
+}
+
+<div class="container">
+    <div class="row">
+        <div class="col-6 offset-3">
+            <div class="card">
+                <div class="card-header">
+                    @if(Model.EmployeeId == 0)
+                    {
+                        <h2 class="text-center text-info">Add Employee</h2>
+                    }
+                    else
+                    {
+                        <h2 class="text-center text-info">Update Employee</h2>
+                    }
+                </div>
+                <div class="card-body">
+                    <form method="post" asp-action="AddEmployee" asp-controller="Employee">
+                        <div class="text-danger text-center" asp-validation-summary="ModelOnly"></div>
+                        <div class="form-group">
+                            <label class="mb-1" asp-for="FirstName"></label>
+                            <input type="text" class="form-control" asp-for="FirstName" placeholder="Enter First name" autocomplete="off"/>
+                            <input type="hidden" asp-for="EmployeeId"/>
+                            <span class="text-danger" asp-validation-for="FirstName"></span>
+                        </div>
+                        <div class="form-group">
+                            <label class="mb-1" asp-for="MiddleName"></label>
+                            <input type="text" class="form-control" asp-for="MiddleName" placeholder="Enter Middle name" autocomplete="off" />
+                            <span class="text-danger" asp-validation-for="MiddleName"></span>
+                        </div>
+                        <div class="form-group">
+                            <label class="mb-1" asp-for="LastName"></label>
+                            <input type="text" class="form-control" asp-for="LastName" placeholder="Enter Last name" autocomplete="off" />
+                            <span class="text-danger" asp-validation-for="LastName"></span>
+                        </div>
+                        <div class="form-group">
+                            <label class="mb-1" asp-for="Gender"></label><br />
+                            <label>
+                                <input type="radio" asp-for="Gender" class="form-check-input" value="Male"/>Male
+                            </label>
+                            <label>
+                                <input type="radio" asp-for="Gender" class="form-check-input" value="Female" />Female
+                            </label>
+                            <label>
+                                <input type="radio" asp-for="Gender" class="form-check-input" value="Other" />Other
+                            </label>
+                            <span class="text-danger" asp-validation-for="Gender"></span>
+                        </div>
+                        <div class="form-group col-lg-6 mt-2">
+                            <label asp-for="DepartmentName"></label>
+                            <select asp-for="DepartmentId" class="form-control">
+                                <option value="0">--Select Department--</option>
+                                @foreach(var dep in ViewBag.department)
+                                {
+                                    <option value="@dep.DepartmentId">@Utilities.EveryFirstCharacterCapital(dep.DepartmentName)</option>
+                                }
+                            </select>
+                            <span class="text-danger" asp-validation-for="DepartmentId"></span>
+                        </div>
+                        <div class="float-end">
+                            @if(Model.EmployeeId == 0)
+                            {
+                                <input type="submit" class="btn btn-sm btn-primary p-2 mt-4" value="Submit"/>
+                            }
+                            else
+                            {
+                                <input type="submit" class="btn btn-sm btn-warning p-2 mt-4" value="Update" />
+                            }
+                        </div>
+
+                    </form>
+                </div>
+                <div class="card-footer mt-4">
+                    <div class="d-grid gap-2">
+                        <a class="btn btn-sm btn-warning p-2 m-2" asp-action="Index" asp-controller="Employee">Back To List</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section scripts{
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
+

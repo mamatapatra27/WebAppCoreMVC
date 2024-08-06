@@ -1,0 +1,41 @@
+﻿
+@model WebAppCoreMVC.Models.ViewModel.EmployeeDepartmentSummaryViewModel
+@{
+    ViewData["Title"] = "DetailsEmployee";
+    Layout = "~/Views/Shared/_LayoutDashboard.cshtml";
+}
+
+<div class="container">
+    <div class="row">
+        <div class="col-6 offset-3">
+            <div class="card">
+                <div class="card-header text-center">
+                    @if(Model.Gender == "Male")
+                    {
+                        <img src="~/Image/Img_Male.jpg" alt="Male Image" style="height:50%;width:50%; border-radius:50%"/>
+                    }
+                    else
+                    {
+                        <img src="~/Image/Img_Female.jpg" alt="Female Image" style="height:50%;width:50%; border-radius:50%" />
+                    }
+                </div>
+                <div class="card-body">
+                    <h5 class="text-info text-center m-1">Employee's Imformation</h5>
+                    <table class="text-center table table-bordered">
+                        <tr><td>Employee Id : </td><td class="text-info">@Model.EmployeeId</td></tr>
+                        <tr><td>Name : </td><td class="text-info"><i>@Model.FullName</i></td></tr>
+                        <tr><td>Gender : </td><td class="text-info">@Model.Gender</td></tr>
+                        <tr><td>Department : </td><td class="text-info">@Model.DepartmentName</td></tr>
+                        <tr><td>Department Code : </td><td class="text-info">@Model.DepartmentCode</td></tr>
+                    </table>
+                </div>
+                <div class="card-footer mt-2">
+                    <div class="d-grid gap-2">
+                        <a class="btn btn-sm btn-primary m-2 p-2" asp-action="Index" asp-controller="Employee">Back To List</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

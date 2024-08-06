@@ -1,0 +1,59 @@
+﻿@model WebAppCoreMVC.Models.Department
+@{
+    ViewData["Title"] = "AddDepartment";
+    Layout = "~/Views/Shared/_LayoutDashboard.cshtml";
+}
+
+<div class="container">
+    <div class="row">
+        <div class="col-8 offset-2">
+            <div class="card">
+                <div class="card-header">
+                    
+                    @* for Add and Edit, if id=0 means add else Edit*@
+                    @if(Model.DepartmentId == 0)
+                    {
+                        <h2 class="text-center text-info">Add Department</h2>
+                    }
+                    else
+                    {
+                        <h2 class="text-center text-info">Update Department</h2>
+                    }
+
+                </div>
+                <div class="card-body">
+                    <form method="post" asp-action="AddDepartment">
+                        <div class="form-group">
+                            <label asp-for="DepartmentName"></label>
+                            <input type="text" class="form-control" placeholder="Enter Department Name" autocomplete="off" asp-for="DepartmentName" />
+                            <input type="hidden" asp-for="DepartmentId"/>
+                            <span class="text-danger" asp-validation-for="DepartmentName"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="DepartmentCode"></label>
+                            <input type="text" class="form-control" placeholder="Enter Department Code" autocomplete="off" asp-for="DepartmentCode" />
+                            <span class="text-danger" asp-validation-for="DepartmentCode"></span>
+                        </div>
+                        <div class="">
+                            @* for Add and Edit, if id=0 means add else Edit*@
+                            @if (Model.DepartmentId == 0)
+                            {
+                                <input type="submit" class="btn btn-sm btn-primary m-2 p-2" style="float:right" value="Submit"/>
+                            }
+                            else
+                            {
+                                <input type="submit" class="btn btn-sm btn-primary m-2 p-2" style="float:right" value="Update" />
+                            }
+                        </div>
+                    </form>
+                </div>
+                <div class="card-footer mt-4">
+                    <div class="d-grid gap-2">
+                        <a class="btn btn-sm btn-warning p-2 m-2" asp-action="Index" asp-controller="Department">Back To List</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

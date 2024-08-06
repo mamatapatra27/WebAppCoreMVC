@@ -1,0 +1,43 @@
+﻿
+@{
+    ViewData["Title"] = "Dashboard";
+    Layout = "~/Views/Shared/_LayoutDashboard.cshtml";
+}
+
+<div class="container">
+    <div class="row mt-1 justify-content-center">
+        @* <div class="col-lg-3">
+            <div class="card" style="height:200px;">
+                <div class="card-body">
+                    <h2 class="text-center">Users</h2>
+                    <div class="text-center cst_icon" style="height:80px;">
+                        <a asp-action="Index" asp-controller="User"><i class="fa fa-users" aria-hidden="true"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div> *@
+
+        <div class="col-lg-3">
+            <div class="card" style="height:200px;">
+                <div class="card-body">
+                    <h2 class="text-center">Employee</h2>
+                    <div class="text-center cst-icon">
+                        <a asp-action="Index" asp-controller="Employee"><i class="fa fa-user" aria-hidden="true"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-3">
+            <div class="card" style="height:200px;">
+                <div class="card-body">
+                    <h2 class="text-center">Department</h2>
+                    <div class="text-center cst-icon">
+                        <a asp-action="Index" asp-controller="Department"><i class="fa fa-building" aria-hidden="true"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

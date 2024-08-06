@@ -1,0 +1,28 @@
+﻿
+@if(TempData["success"] != null)
+{
+	<div class="alert alert-success text-center msg">
+		<h3><strong>Success!</strong></h3><h4>@TempData["success"]</h4>
+	</div>
+}
+
+@if (TempData["error"] != null)
+{
+	<div class="alert alert-danger text-center msg">
+		<h3><strong>Error!</strong></h3><h4>@TempData["error"]</h4>
+	</div>
+}
+
+@if (TempData["warning"] != null)
+{
+	<div class="alert alert-warning text-center msg">
+		<h3><strong>Warning!</strong></h3><h4>@TempData["warning"]</h4>
+	</div>
+}
+
+@if (TempData["info"] != null)
+{
+	<div class="alert alert-info text-center msg">
+		<h3><strong>Info!</strong></h3><h4>@TempData["info"]</h4>
+	</div>
+}
