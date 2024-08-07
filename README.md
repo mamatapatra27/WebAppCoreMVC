@@ -1,4 +1,4 @@
-## CRUD Operation with Multiple Table Using Asp.Net Core Web App(Model-View-Controller) with Migration  
+## CRUD Operation with Multiple Table Apply Migration  
 1. First Clone the Repository in your System: 
       Repository link - https://github.com/mamatapatra27/WebAppCoreMVC.git
 2. Connection String: 
