@@ -6,4 +6,5 @@
 ##  3. Apply Migration
    Open Package Manager Console and run the Command: 
    Update-Database  
+   
 4. Rebuild the solution and start debugging
