@@ -18,17 +18,27 @@ namespace WebAppCoreMVC.Controllers
         // method for First Letter in UpperCase
         private static string EveryFirstCharacterCapital(string input)
         {
-            StringBuilder sb = new StringBuilder();
-            if (!string.IsNullOrEmpty(input))
+            if (string.IsNullOrEmpty(input))
+	    {
+    		return input;
+	    }
+
+	    StringBuilder sb = new StringBuilder();
+
+	    var data = input.Split(' ');
+	    for(int i=0; i<data.Length; i++)
             {
-                var data = input.Split(' ');
-                for(int i=0; i<data.Length; i++)
-                {
-                    sb.Append(data[i].First().ToString().ToUpper() + data[i].Substring(1) + " ");
-                }
-                sb.Remove(sb.Length - 1, 1);
-            }
-            return sb.ToString();
+    		if (!string.IsNullOrEmpty(data[i]))
+    		{
+        	     sb.Append(data[i].First().ToString().ToUpper() + data[i].Substring(1));
+    		}
+    		if(i < data.Length - 1)
+    		{
+        	     sb.Append(" ");
+    		}
+    		//sb.Remove(sb.Length - 1, 1);
+	    }
+	    return sb.ToString();
         }
 
        
@@ -287,96 +297,6 @@ namespace WebAppCoreMVC.Controllers
             }
             return new JsonResult(result);
         }
-
-
-
-
-
-		//Edit get
-		//public IActionResult EditEmployee(int id)
-		//{
-		//    ViewBag.department = context.Departments.ToList();
-		//    EmployeeDepartmentSummaryViewModel employeeDepartment = new EmployeeDepartmentSummaryViewModel();
-		//    try
-		//    {
-		//        if (id == 0)
-		//        {
-		//            return BadRequest();
-		//        }
-		//        else
-		//        {
-		//            employeeDepartment = (from e in context.Employees.Where(e => e.EmployeeId == id)
-		//                                  join d in context.Departments
-		//                                  on e.DepartmentId equals d.DepartmentId
-		//                                  select new EmployeeDepartmentSummaryViewModel
-		//                                  {
-		//                                      EmployeeId = e.EmployeeId,
-		//                                      //FirstName = e.FirstName,
-		//                                      //MiddleName = e.MiddleName,
-		//                                      //LastName = e.LastName,
-		//                                      //Gender = e.Gender,
-		//                                      //DepartmentName = d.DepartmentName,
-		//                                      //DepartmentCode = d.DepartmentCode,
-
-		//                                      // Replace that with EveryFirstCharacterCapital Method
-		//                                      FirstName = EveryFirstCharacterCapital(e.FirstName),
-		//                                      MiddleName = EveryFirstCharacterCapital(e.MiddleName),
-		//                                      LastName = EveryFirstCharacterCapital(e.LastName),
-		//                                      Gender = EveryFirstCharacterCapital(e.Gender),
-		//                                      DepartmentId = d.DepartmentId,
-		//                                      DepartmentCode = d.DepartmentCode.ToUpper(),
-		//                                      DepartmentName = EveryFirstCharacterCapital(d.DepartmentName)
-
-		//                                  }).First(); // first() for single Record
-		//            if (employeeDepartment == null)
-		//            {
-		//                return NotFound();
-		//            }
-		//        }
-		//    }
-		//    catch (Exception)
-		//    {
-		//        throw;
-		//    }
-		//    return View(employeeDepartment);
-		//}
-
-		// Edit Post
-
-		//[HttpPost]
-		//public IActionResult EditEmployee(EmployeeDepartmentSummaryViewModel empDep)
-		//{
-		//    ViewBag.department = context.Departments.ToList();
-		//    try
-		//    {
-		//        ModelState.Remove("DepartmentName");
-		//        ModelState.Remove("DepartmentCode");
-		//        if (!ModelState.IsValid)
-		//        {
-		//            ModelState.AddModelError(string.Empty, "Please enter Valid Data!");
-		//            return View(empDep);
-		//        }
-		//        else
-		//        {
-		//            var data = new Employee()
-		//            {
-		//                EmployeeId = empDep.EmployeeId,
-		//                FirstName = empDep.FirstName,
-		//                MiddleName = empDep.MiddleName,
-		//                LastName = empDep.LastName,
-		//                Gender = empDep.Gender,
-		//                DepartmentId = empDep.DepartmentId
-		//            };
-		//            context.Employees.Update(data);
-		//            context.SaveChanges();
-		//            TempData["success"] = "Record has been Updated!";
-		//        }
-		//    }
-		//    catch (Exception)
-		//    {
-		//        throw;
-		//    }
-		//    return RedirectToAction("Index");
-		//}
-	}
+	
+     }
 }
